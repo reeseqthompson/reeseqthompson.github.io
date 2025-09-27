@@ -43,8 +43,19 @@
             box-sizing: border-box
         }
 
+        /* Prevent horizontal overflow globally */
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            /* iOS Safari scrollbar fixes */
+            -webkit-overflow-scrolling: touch;
+            /* Prevent horizontal scrolling */
+            overflow-x: hidden;
         }
 
         body {
@@ -53,6 +64,19 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
+            /* Hide scrollbar on iOS while maintaining functionality */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+            /* Prevent horizontal scrolling */
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
         }
 
         a {
@@ -67,7 +91,10 @@
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 24px
+            padding: 24px;
+            /* Ensure container doesn't cause horizontal overflow */
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Header */
@@ -78,6 +105,13 @@
             backdrop-filter: saturate(180%) blur(8px);
             background: color-mix(in oklab, var(--bg), transparent 20%);
             border-bottom: 1px solid color-mix(in oklab, var(--text), transparent 90%);
+            /* iOS Safari fixes for sticky header */
+            -webkit-backdrop-filter: saturate(180%) blur(8px);
+            transform: translateZ(0);
+            /* Force hardware acceleration */
+            will-change: transform;
+            /* For dropdown positioning */
+            position: relative;
         }
 
         .nav {
@@ -85,7 +119,10 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            padding: 12px 24px
+            padding: 12px 24px;
+            /* Prevent horizontal overflow */
+            min-width: 0;
+            flex-wrap: wrap;
         }
 
         .nav a {
@@ -122,7 +159,122 @@
         .right {
             display: flex;
             align-items: center;
-            gap: 6px
+            gap: 6px;
+            /* Prevent horizontal overflow */
+            min-width: 0;
+            flex-shrink: 1;
+            /* For dropdown positioning */
+            position: relative;
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 3px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .mobile-menu-btn.active span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        /* Mobile Dropdown Menu */
+        .mobile-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--card);
+            border: 1px solid color-mix(in oklab, var(--text), transparent 80%);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            min-width: 200px;
+            overflow: hidden;
+        }
+
+        .mobile-dropdown.active {
+            display: flex;
+        }
+
+        .mobile-menu-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 16px;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid color-mix(in oklab, var(--text), transparent 90%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mobile-menu-link:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu-link:hover {
+            background: color-mix(in oklab, var(--brand), transparent 85%);
+        }
+
+        .mobile-menu-divider {
+            height: 1px;
+            background: color-mix(in oklab, var(--text), transparent 90%);
+            margin: 8px 0;
+        }
+
+        .mobile-theme-btn {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .mobile-theme-btn:hover {
+            background: color-mix(in oklab, var(--brand), transparent 85%);
         }
 
         .btn {
@@ -200,7 +352,9 @@
 
         .grid {
             display: grid;
-            gap: 16px
+            gap: 16px;
+            /* Prevent horizontal overflow */
+            min-width: 0;
         }
 
         .two {
@@ -240,6 +394,15 @@
             font-size: 14px
         }
 
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            header {
+                /* Ensure proper sticky behavior on iOS */
+                position: -webkit-sticky;
+                position: sticky;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 860px) {
             .hero {
@@ -255,6 +418,43 @@
                 gap: 8px
             }
         }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 8px 16px;
+            }
+
+            .right {
+                gap: 8px;
+            }
+
+            /* Hide desktop navigation on mobile */
+            .desktop-nav {
+                display: none;
+            }
+
+            /* Hide desktop theme button on mobile */
+            .desktop-theme-btn {
+                display: none;
+            }
+
+            /* Show mobile menu button */
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        /* Show desktop navigation on larger screens */
+        @media (min-width: 769px) {
+            .desktop-nav {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -266,16 +466,41 @@
                 <a href="#top" style="font-size:18px">Reese Thompson</a>
             </div>
             <div class="right" role="navigation" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
-                <button class="btn secondary" id="themeBtn" aria-label="Toggle theme">🌗</button>
+                <!-- Desktop Navigation -->
+                <div class="desktop-nav">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <!-- Desktop Theme Button -->
+                <button class="btn secondary desktop-theme-btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu"
+                    aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-dropdown" id="mobileMenu">
+        <a href="#about" class="mobile-menu-link">📝 About</a>
+        <a href="#experience" class="mobile-menu-link">💼 Experience</a>
+        <a href="#education" class="mobile-menu-link">🎓 Education</a>
+        <a href="#projects" class="mobile-menu-link">🚀 Projects</a>
+        <a href="#skills" class="mobile-menu-link">🔨 Skills</a>
+        <a href="#contact" class="mobile-menu-link">📬 Contact</a>
+        <div class="mobile-menu-divider"></div>
+        <button class="mobile-theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
+            <span>🌗</span> Toggle Theme
+        </button>
+    </div>
 
     <main class="container">
         <!-- Hero -->
@@ -478,14 +703,66 @@
     <script>
         // Theme toggle with localStorage
         const body = document.body;
-        const btn = document.getElementById('themeBtn');
+        const desktopThemeBtn = document.getElementById('themeBtn');
+        const mobileThemeBtn = document.getElementById('mobileThemeBtn');
         const saved = localStorage.getItem('theme');
         if (saved) body.className = saved;
-        btn.addEventListener('click', () => {
+
+        function toggleTheme() {
             body.classList.toggle('light');
             const mode = body.classList.contains('light') ? 'light' : 'dark';
             localStorage.setItem('theme', mode);
+        }
+
+        desktopThemeBtn.addEventListener('click', toggleTheme);
+        mobileThemeBtn.addEventListener('click', () => {
+            toggleTheme();
+            // Close mobile menu after theme toggle
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         });
+
+        // Mobile dropdown toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileMenu.classList.contains('active');
+
+            if (isOpen) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                mobileMenu.classList.add('active');
+                mobileMenuBtn.classList.add('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Close dropdown when clicking on a link
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
