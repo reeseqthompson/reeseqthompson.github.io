@@ -1,15 +1,494 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="refresh"
-        content="0; url=https://www.notion.so/Reese-Thompson-2706ac9eef30802f9a2ce85677e4d6d5?source=copy_link" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reese Thompson</title>
+    <meta name="description"
+        content="Reese Thompson – Software Engineer at AWS Batch. Portfolio, experience, projects, and contact." />
+    <meta property="og:title" content="Reese Thompson" />
+    <meta property="og:description" content="Software engineering, problem‑solving, and technical leadership." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230ea5e9'/%3E%3Ctext x='50' y='58' font-size='52' text-anchor='middle' fill='white' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji'%3ERT%3C/text%3E%3C/svg%3E" />
+    <style>
+        :root {
+            --bg: #0b1020;
+            /* canvas */
+            --card: #0f172a;
+            /* card */
+            --text: #e5e7eb;
+            /* text */
+            --muted: #94a3b8;
+            /* secondary text */
+            --brand: #0ea5e9;
+            /* accent */
+            --ring: rgba(14, 165, 233, .35);
+            --shadow: 0 10px 30px rgba(2, 6, 23, .35);
+        }
+
+        .light {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #475569;
+            --brand: #0ea5e9;
+            --ring: rgba(14, 165, 233, .3);
+            --shadow: 0 10px 25px rgba(2, 6, 23, .08);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--brand);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: saturate(180%) blur(8px);
+            background: color-mix(in oklab, var(--bg), transparent 20%);
+            border-bottom: 1px solid color-mix(in oklab, var(--text), transparent 90%);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 24px
+        }
+
+        .nav a {
+            color: var(--text);
+            opacity: .9;
+            padding: 8px 10px;
+            border-radius: 10px
+        }
+
+        .nav a:hover {
+            background: color-mix(in oklab, var(--brand), transparent 85%)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .3px
+        }
+
+        .brand .badge {
+            display: inline-grid;
+            place-items: center;
+            font-weight: 800;
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: var(--brand);
+            color: white;
+            box-shadow: var(--shadow)
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: var(--brand);
+            color: white;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow)
+        }
+
+        .btn.secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid color-mix(in oklab, var(--text), transparent 80%)
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 28px;
+            align-items: center;
+            padding-block: 48px
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: var(--shadow)
+        }
+
+        h1 {
+            font-size: clamp(28px, 3.6vw, 44px);
+            line-height: 1.1;
+            margin: 0 0 8px
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin: 0 0 18px
+        }
+
+        .chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 14px;
+            background: color-mix(in oklab, var(--brand), transparent 85%);
+            color: color-mix(in oklab, var(--brand), black 75%)
+        }
+
+        /* Sections */
+        section {
+            margin-block: 32px
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.4vw, 28px);
+            margin: 0 0 14px
+        }
+
+        .grid {
+            display: grid;
+            gap: 16px
+        }
+
+        .two {
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .three {
+            grid-template-columns: repeat(3, 1fr)
+        }
+
+        .item h3 {
+            margin: 0 0 6px;
+            font-size: 18px
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 8px
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px
+        }
+
+        li {
+            margin-bottom: 6px
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 36px;
+            padding: 28px;
+            border-top: 1px solid color-mix(in oklab, var(--text), transparent 90%);
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .two,
+            .three {
+                grid-template-columns: 1fr
+            }
+
+            .right {
+                gap: 8px
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <p>If you are not redirected, <a
-            href="https://www.notion.so/Reese-Thompson-2706ac9eef30802f9a2ce85677e4d6d5?source=copy_link">click
-            here</a>.</p>
+<body class="light" id="top">
+    <header>
+        <nav class="nav container">
+            <div class="brand">
+                <span class="badge" aria-hidden="true">RT</span>
+                <a href="#top" style="font-size:18px">Reese Thompson</a>
+            </div>
+            <div class="right" role="navigation" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <button class="btn secondary" id="themeBtn" aria-label="Toggle theme">🌗</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero -->
+        <section class="hero" aria-labelledby="intro-heading">
+            <div class="card">
+                <h1 id="intro-heading">Reese Thompson</h1>
+                <p class="subtitle">Hello! I'm Reese. With diverse experience and a passion for learning, I thrive at
+                    the intersection of software engineering, problem‑solving, and technical leadership. My passion lies
+                    in developing efficient systems and solutions that address complex challenges.</p>
+                <div class="chips" aria-label="Highlights">
+                    <span class="chip">Software Engineer @ AWS Batch</span>
+                    <span class="chip">Cornell CS ’25</span>
+                    <span class="chip">Fast learner</span>
+                    <span class="chip">Problem solver</span>
+                </div>
+            </div>
+            <div class="card">
+                <h2>📬 Contact</h2>
+                <p>Let's create something amazing together! Reach out to me at:</p>
+                <p><strong>Email:</strong> <a href="mailto:rqt3@cornell.edu">rqt3@cornell.edu</a><br />
+                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/reese-thompson-933368232/"
+                        target="_blank" rel="noreferrer noopener">linkedin.com/in/reese‑thompson</a>
+                </p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+                    <a class="btn" href="#projects">View Projects</a>
+                    <a class="btn secondary" href="#experience">View Experience</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="card" aria-labelledby="about-heading">
+            <h2 id="about-heading">📝 About Me</h2>
+            <p>I’m a problem solver and a fast learner. I love finding new solutions to simple and complex problems. I
+                recently graduated from Cornell, where I was an experienced Teaching Assistant for Computer Systems
+                Organization and a Business Lead for the Cornell Steel Bridge Project Team. I’m now a full‑time software
+                engineer at AWS Batch. When I’m not working, I love working on project cars (especially my Miata!),
+                golfing, and skiing in the winter.</p>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="card" aria-labelledby="exp-heading">
+            <h2 id="exp-heading">💼 Experience</h2>
+            <div class="grid two">
+                <div class="item">
+                    <h3>AWS Batch | Software Development Engineer</h3>
+                    <div class="meta">May 2024 - August 2024, July 2025 - Present</div>
+                    <ul>
+                        <li>Lead the design of intuitive user interfaces for mobile and web applications, enhancing user
+                            satisfaction and engagement.</li>
+                        <li>Collaborate with cross‑functional teams to create cohesive brand experiences across all
+                            platforms.</li>
+                        <li>Mentor junior designers, fostering a collaborative and innovative design culture.</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <h3>Cornell University | Teaching Assistant - Computer Systems Organization</h3>
+                    <div class="meta">January 2023 - May 2025</div>
+                    <ul>
+                        <li>Developed brand identities, including logos, typography, and color schemes, for over 30
+                            clients.</li>
+                        <li>Produced marketing materials, digital ads, and promotional content, resulting in a 25%
+                            increase in client engagement for key accounts.</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <h3>The Hilliard Corporation | Software Developer Intern</h3>
+                    <div class="meta">May 2023 - August 2023</div>
+                    <ul>
+                        <li>Developed brand identities, including logos, typography, and color schemes, for over 30
+                            clients.</li>
+                        <li>Produced marketing materials, digital ads, and promotional content, resulting in a 25%
+                            increase in client engagement for key accounts.</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <h3>Corning Incorporated | Lab Management Intern</h3>
+                    <div class="meta">May 2022 - August 2022</div>
+                    <ul>
+                        <li>Developed brand identities, including logos, typography, and color schemes, for over 30
+                            clients.</li>
+                        <li>Produced marketing materials, digital ads, and promotional content, resulting in a 25%
+                            increase in client engagement for key accounts.</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <h3>Winchester Optical Company | Lab Technician</h3>
+                    <div class="meta">June 2020 - May 2022</div>
+                    <ul>
+                        <li>Developed brand identities, including logos, typography, and color schemes, for over 30
+                            clients.</li>
+                        <li>Produced marketing materials, digital ads, and promotional content, resulting in a 25%
+                            increase in client engagement for key accounts.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- NOTE: Some bullet points look like generic marketing/branding content that might be placeholders. Edit as needed. -->
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="card" aria-labelledby="edu-heading">
+            <h2 id="edu-heading">🎓 Education</h2>
+            <div class="grid two">
+                <div class="item">
+                    <h3>BS Computer Science — Cornell University</h3>
+                    <div class="meta">2025</div>
+                    <ul>
+                        <li>Completed with Cum Laude distinction</li>
+                        <li>Joan and Irwin Jacobs Scholar Award</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <h3>Business Minor — Cornell University</h3>
+                    <div class="meta">2025</div>
+                    <ul>
+                        <li>Including MBA level courses in Financial Accounting and Marketing Management</li>
+                        <li>Tech‑relevant coursework: Digital Business Strategy, Business Simulation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="card" aria-labelledby="proj-heading">
+            <h2 id="proj-heading">🚀 Projects</h2>
+            <div class="grid two">
+                <div class="item">
+                    <h3>Psychometric Aptitude Test Suite</h3>
+                    <div class="meta">Cornell CS3110 • OCaml • Lambda Psychometric group</div>
+                    <p>Aptitude test suite developed using the OCaml programming language with the Lambda Psychometric
+                        group (Cornell CS3110). The modularly constructed test suite holds a variety of aptitude tests,
+                        with a custom currency‑based incentive system.</p>
+                </div>
+                <div class="item">
+                    <h3>NLP Business Pitch Viability Engine</h3>
+                    <p>A complete rebranding project for a local café, including logo redesign, packaging, and in‑store
+                        visuals, resulting in a 40% increase in foot traffic.<br />
+                        <strong>Role:</strong> Brand Strategist & Designer<br />
+                        <strong>Tools:</strong> Illustrator, Photoshop, Procreate
+                    </p>
+                </div>
+                <div class="item">
+                    <h3>ML Hand Recognition</h3>
+                    <p>A complete rebranding project for a local café, including logo redesign, packaging, and in‑store
+                        visuals, resulting in a 40% increase in foot traffic.<br />
+                        <strong>Role:</strong> Brand Strategist & Designer<br />
+                        <strong>Tools:</strong> Illustrator, Photoshop, Procreate
+                    </p>
+                </div>
+                <div class="item">
+                    <h3>AWS CDK Script Automations</h3>
+                    <p>A complete rebranding project for a local café, including logo redesign, packaging, and in‑store
+                        visuals, resulting in a 40% increase in foot traffic.<br />
+                        <strong>Role:</strong> Brand Strategist & Designer<br />
+                        <strong>Tools:</strong> Illustrator, Photoshop, Procreate
+                    </p>
+                </div>
+            </div>
+            <!-- NOTE: Some project descriptions appear to be placeholders for branding/Design work; replace with your actual engineering details when ready. -->
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="card" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">🔨 Skills</h2>
+            <div class="grid three">
+                <ul>
+                    <li>Software Engineering & Development</li>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Cloud Computing (AWS)</li>
+                </ul>
+                <ul>
+                    <li>Business Analysis & Project Management</li>
+                    <li>Python, Java & C++</li>
+                    <li>Distributed Systems & Batch Processing</li>
+                </ul>
+                <ul>
+                    <li>Technical Leadership</li>
+                    <li>UI/UX Collaboration</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact (again) -->
+        <section id="contact" class="card" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">📬 Contact</h2>
+            <p>Let's create something amazing together! Reach out to me at:</p>
+            <p><strong>Email:</strong> <a href="mailto:rqt3@cornell.edu">rqt3@cornell.edu</a><br />
+                <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/reese-thompson-933368232/"
+                    target="_blank" rel="noreferrer noopener">linkedin.com/in/reese‑thompson</a>
+            </p>
+        </section>
+
+        <footer>
+            © <span id="year"></span> Reese Thompson • Built with semantic HTML & vanilla CSS.
+            <span style="opacity:.7">(Tip: press the moon to toggle dark/light.)</span>
+        </footer>
+    </main>
+
+    <script>
+        // Theme toggle with localStorage
+        const body = document.body;
+        const btn = document.getElementById('themeBtn');
+        const saved = localStorage.getItem('theme');
+        if (saved) body.className = saved;
+        btn.addEventListener('click', () => {
+            body.classList.toggle('light');
+            const mode = body.classList.contains('light') ? 'light' : 'dark';
+            localStorage.setItem('theme', mode);
+        });
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>
