@@ -1,50 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        header {
-            background-color: #007bff;
-            color: #ffffff;
-            padding: 20px 0;
-        }
-        .content {
-            padding: 20px;
-        }
-        .footer {
-            background-color: #333;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design Portfolio — Starter</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+  <div class="container">
+    <header class="header">
+      <div>
+        <div class="site-title">Design Portfolio — Starter</div>
+        <div class="badge">Static site for GitHub Pages</div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects/micro-cabin/index.html">Project 1</a>
+        <a href="README.html">How-To</a>
+      </nav>
+    </header>
 
-<header>
-    <h1>Welcome</h1>
-</header>
+    <section>
+      <div class="grid">
+        <a class="card" href="projects/micro-cabin/index.html">
+          <img class="thumb" src="assets/images/placeholder.svg" alt="Micro-cabin project thumbnail">
+          <div class="body">
+            <h3 class="h">Project 01 — Micro-Cabin</h3>
+            <p class="p">Your first architecture project: brief, definitions, deliverables, and a built-in checklist.</p>
+          </div>
+        </a>
 
-<div class="content">
-    <p>Hello and welcome! We're so glad you're here. Take a look around.</p>
-    <p><a href="/about.html">Learn more about us</a> or check out our <a href="/services.html">services</a>.</p>
-</div>
+        <div class="card">
+          <img class="thumb" src="assets/images/placeholder.svg" alt="Placeholder project">
+          <div class="body">
+            <h3 class="h">Project 02 — Coming soon</h3>
+            <p class="p">Parametric pavilion or façade system (Grasshopper/Blender optional).</p>
+          </div>
+        </div>
 
-<div class="footer">
-    <p>&copy; 2024 Website Name. All rights reserved.</p>
-</div>
+        <div class="card">
+          <img class="thumb" src="assets/images/placeholder.svg" alt="Placeholder project">
+          <div class="body">
+            <h3 class="h">Project 03 — Coming soon</h3>
+            <p class="p">Pedestrian footbridge concept: span studies, load path diagrams, and context visuals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <footer class="footer">
+      Last updated: 2025-09-27 • Made for quick publishing on GitHub Pages.
+    </footer>
+  </div>
 </body>
 </html>
