@@ -56,6 +56,8 @@
             -webkit-overflow-scrolling: touch;
             /* Prevent horizontal scrolling */
             overflow-x: hidden;
+            /* Add scroll padding for better section navigation */
+            scroll-padding-top: 8px;
         }
 
         body {
@@ -163,8 +165,6 @@
             /* Prevent horizontal overflow */
             min-width: 0;
             flex-shrink: 1;
-            /* For dropdown positioning */
-            position: relative;
         }
 
         /* Desktop Navigation */
@@ -213,8 +213,8 @@
         /* Mobile Dropdown Menu */
         .mobile-dropdown {
             position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
+            top: 100%;
+            right: 16px;
             background: var(--card);
             border: 1px solid color-mix(in oklab, var(--text), transparent 80%);
             border-radius: 12px;
@@ -280,6 +280,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 10px 14px;
             border-radius: 12px;
@@ -288,7 +289,8 @@
             border: 0;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: var(--shadow)
+            box-shadow: var(--shadow);
+            text-align: center;
         }
 
         .btn.secondary {
@@ -302,8 +304,7 @@
             display: grid;
             grid-template-columns: 1.2fr .8fr;
             gap: 28px;
-            align-items: center;
-            padding-block: 48px
+            align-items: stretch;
         }
 
         .card {
@@ -311,7 +312,10 @@
             border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
             border-radius: 18px;
             padding: 24px;
-            box-shadow: var(--shadow)
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         h1 {
@@ -328,7 +332,8 @@
         .chips {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap
+            flex-wrap: wrap;
+            margin-top: auto;
         }
 
         .chip {
@@ -340,9 +345,29 @@
             color: color-mix(in oklab, var(--brand), black 75%)
         }
 
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            justify-content: center;
+        }
+
         /* Sections */
         section {
-            margin-block: 32px
+            margin-block: 24px;
+            scroll-margin-top: 8px;
         }
 
         h2 {
@@ -443,6 +468,25 @@
             .mobile-menu-btn {
                 display: flex;
             }
+
+            /* Fix button layout on mobile */
+            .hero-buttons {
+                flex-direction: row !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                flex-wrap: nowrap !important;
+            }
+
+            .hero-buttons .btn {
+                flex: 1;
+                min-width: 0;
+                text-align: center;
+                font-size: 14px;
+                padding: 8px 12px;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+            }
         }
 
         /* Show desktop navigation on larger screens */
@@ -486,21 +530,21 @@
                 </button>
             </div>
         </nav>
-    </header>
 
-    <!-- Mobile Dropdown Menu -->
-    <div class="mobile-dropdown" id="mobileMenu">
-        <a href="#about" class="mobile-menu-link">📝 About</a>
-        <a href="#experience" class="mobile-menu-link">💼 Experience</a>
-        <a href="#education" class="mobile-menu-link">🎓 Education</a>
-        <a href="#projects" class="mobile-menu-link">🚀 Projects</a>
-        <a href="#skills" class="mobile-menu-link">🔨 Skills</a>
-        <a href="#contact" class="mobile-menu-link">📬 Contact</a>
-        <div class="mobile-menu-divider"></div>
-        <button class="mobile-theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
-            <span>🌗</span> Toggle Theme
-        </button>
-    </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-dropdown" id="mobileMenu">
+            <a href="#about" class="mobile-menu-link">📝 About</a>
+            <a href="#experience" class="mobile-menu-link">💼 Experience</a>
+            <a href="#education" class="mobile-menu-link">🎓 Education</a>
+            <a href="#projects" class="mobile-menu-link">🚀 Projects</a>
+            <a href="#skills" class="mobile-menu-link">🔨 Skills</a>
+            <a href="#contact" class="mobile-menu-link">📬 Contact</a>
+            <div class="mobile-menu-divider"></div>
+            <button class="mobile-theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
+                <span>🌗</span> Toggle Theme
+            </button>
+        </div>
+    </header>
 
     <main class="container">
         <!-- Hero -->
@@ -518,13 +562,12 @@
                 </div>
             </div>
             <div class="card">
-                <h2>📬 Contact</h2>
-                <p>Let's create something amazing together! Reach out to me at:</p>
-                <p><strong>Email:</strong> <a href="mailto:rqt3@cornell.edu">rqt3@cornell.edu</a><br />
-                    <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/reese-thompson-933368232/"
-                        target="_blank" rel="noreferrer noopener">linkedin.com/in/reese‑thompson</a>
-                </p>
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+                <div class="hero-image">
+                    <img src="graduation.jpg" alt="Reese Thompson graduation photo"
+                        style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 12px;">
+                </div>
+                <div class="hero-buttons"
+                    style="display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; justify-content:center">
                     <a class="btn" href="#projects">View Projects</a>
                     <a class="btn secondary" href="#experience">View Experience</a>
                 </div>
