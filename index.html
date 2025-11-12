@@ -345,6 +345,11 @@
             color: color-mix(in oklab, var(--brand), black 75%)
         }
 
+        /* Dark mode contrast for chips */
+        body:not(.light) .chip {
+            color: #ffffff;
+        }
+
         .hero-image {
             text-align: center;
         }
@@ -388,6 +393,34 @@
 
         .three {
             grid-template-columns: repeat(3, 1fr)
+        }
+
+        /* Skills section spacing tweaks */
+        #skills .grid.three {
+            /* tighter row spacing, wider column spacing */
+            gap: 8px 24px;
+        }
+
+        #skills .grid.three ul {
+            /* ensure consistent list indent and remove any extra margins */
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        #skills .grid.three li {
+            /* consistent item spacing */
+            margin-bottom: 10px;
+        }
+
+        #skills .grid.three li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile: stack lists with comfortable spacing */
+        @media (max-width: 860px) {
+            #skills .grid.three {
+                gap: 10px 0;
+            }
         }
 
         .item h3 {
@@ -601,7 +634,8 @@
             <h2 id="exp-heading">💼 Experience</h2>
             <div class="grid two">
                 <div class="item">
-                    <h3>👨‍💻 AWS Batch | Software Development Engineer</h3>
+                    <h3>👨‍💻 <a href="https://aws.amazon.com/batch/" target="_blank" rel="noreferrer noopener">AWS
+                            Batch</a> | Software Development Engineer</h3>
                     <div class="meta">May 2024 – Present · Seattle, WA (On‑site)</div>
                     <ul>
                         <li>Software Development Engineer on the Telemetry and Scaling teams of <a
@@ -614,7 +648,9 @@
                     </ul>
                 </div>
                 <div class="item">
-                    <h3>📚 Cornell University | Teaching Assistant - Computer Systems Organization</h3>
+                    <h3>📚 Cornell University | Teaching Assistant - <a
+                            href="https://www.cs.cornell.edu/courses/cs3410/2025sp/course/schedule.html" target="_blank"
+                            rel="noreferrer noopener">Computer Systems Organization</a></h3>
                     <div class="meta">Aug 2023 – Aug 2025 · Ithaca, NY (On‑site)</div>
                     <ul>
                         <li>Led lab sessions and weekly office hours for CS3410 (Computer Systems Organization).</li>
@@ -623,7 +659,8 @@
                     </ul>
                 </div>
                 <div class="item">
-                    <h3>⚙️ The Hilliard Corporation | Software Developer Intern</h3>
+                    <h3>⚙️ <a href="https://www.hilliardcorp.com/" target="_blank" rel="noreferrer noopener">The
+                            Hilliard Corporation</a> | Software Developer Intern</h3>
                     <div class="meta">May 2023 - August 2023</div>
                     <ul>
                         <li>Developed database‑driven web apps to track research, manufacturing, and engineering
@@ -634,7 +671,8 @@
                     </ul>
                 </div>
                 <div class="item">
-                    <h3>👨‍🔬 Corning Incorporated | Lab Management Intern</h3>
+                    <h3>👨‍🔬 <a href="https://www.corning.com/worldwide/en.html" target="_blank"
+                            rel="noreferrer noopener">Corning Incorporated</a> | Lab Management Intern</h3>
                     <div class="meta">May 2022 - August 2022</div>
                     <ul>
                         <li>Modeled and designed a closed‑loop water‑cooling system to reduce sediment in lab
@@ -645,7 +683,8 @@
                     </ul>
                 </div>
                 <div class="item">
-                    <h3>👓 Winchester Optical Company | Lab Technician</h3>
+                    <h3>👓 <a href="https://www.winoptical.com/" target="_blank" rel="noreferrer noopener">Winchester
+                            Optical Company</a> | Lab Technician</h3>
                     <div class="meta">June 2020 - May 2022</div>
                     <ul>
                         <li>Received, corrected, and organized incoming orders for eyeglass lenses from doctors
@@ -665,7 +704,8 @@
             <h2 id="edu-heading">🎓 Education</h2>
             <div class="grid two">
                 <div class="item">
-                    <h3>🖥️ BS Computer Science — Cornell University</h3>
+                    <h3>🖥️ <a href="https://www.cs.cornell.edu/" target="_blank" rel="noreferrer noopener">BS Computer
+                            Science</a> — Cornell University</h3>
                     <div class="meta">2025</div>
                     <ul>
                         <li>Graduated from the College of Engineering with Cum Laude distinction.</li>
@@ -674,7 +714,8 @@
                     </ul>
                 </div>
                 <div class="item">
-                    <h3>💼 Business Minor — Cornell University</h3>
+                    <h3>💼 <a href="https://business.cornell.edu/" target="_blank" rel="noreferrer noopener">Business
+                            Minor</a> — Cornell University</h3>
                     <div class="meta">2025</div>
                     <ul>
                         <li>Including MBA level courses in Financial Accounting and Marketing Management</li>
@@ -689,7 +730,8 @@
             <h2 id="proj-heading">🚀 Projects</h2>
             <div class="grid two">
                 <div class="item">
-                    <h3>🧠 Psychometric Aptitude Test Suite (PATS)</h3>
+                    <h3>🧠 <a href="https://cs3110.github.io/textbook/cover.html" target="_blank"
+                            rel="noreferrer noopener">Psychometric Aptitude Test Suite (PATS)</a></h3>
                     <div class="meta">Cornell CS3110 • OCaml • Lambda Psychometric Group</div>
                     <p>
                         An extensible aptitude-testing suite built in OCaml for CS3110. We designed a modular core
@@ -704,7 +746,8 @@
                 </div>
 
                 <div class="item">
-                    <h3>🦈 NLP Business Pitch Viability Engine</h3>
+                    <h3>🦈 <a href="https://classes.cornell.edu/browse/roster/SP24/class/CS/4300" target="_blank"
+                            rel="noreferrer noopener">NLP Business Pitch Viability Engine</a></h3>
                     <div class="meta">Machine Learning • Python • scikit-learn</div>
                     <p>
                         Built a predictor for pitch “viability” by computing similarity to historical Shark Tank deals
@@ -718,7 +761,8 @@
                 </div>
 
                 <div class="item">
-                    <h3>✋ ML Hand Recognition</h3>
+                    <h3>✋ <a href="https://www.cs.cornell.edu/courses/cs4780/2024sp/" target="_blank"
+                            rel="noreferrer noopener">ML Hand Recognition</a></h3>
                     <div class="meta">Computer Vision • Python • NumPy</div>
                     <p>
                         A custom multi-layer perceptron to classify rock–paper–scissors outcomes from low-resolution
@@ -731,7 +775,8 @@
                 </div>
 
                 <div class="item">
-                    <h3>💻 AWS Batch CDK Job Orchestration</h3>
+                    <h3>💻 <a href="https://aws.amazon.com/cdk/" target="_blank" rel="noreferrer noopener">AWS Batch CDK
+                            Job Orchestration</a></h3>
                     <div class="meta">AWS • IaC • TypeScript/Python</div>
                     <p>
                         CDK scripts to spin up and tear down an AWS Batch pipeline for a Python data-file workload. A
@@ -761,12 +806,13 @@
                 <ul>
                     <li>Business Analysis & Project Management</li>
                     <li>Python, Java & C++</li>
-                    <li>Distributed Systems & Batch Processing</li>
+                    <li>Performance Optimization</li>
                 </ul>
                 <ul>
+                    <li>Distributed Systems & Batch Processing</li>
                     <li>Technical Leadership</li>
                     <li>UI/UX Collaboration</li>
-                    <li>Performance Optimization</li>
+
                 </ul>
             </div>
         </section>
@@ -776,13 +822,13 @@
             <h2 id="contact-heading">📬 Contact</h2>
             <p><strong>Email:</strong> <a href="mailto:rqt3@cornell.edu">rqt3@cornell.edu</a><br />
                 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/reese-thompson-933368232/"
-                    target="_blank" rel="noreferrer noopener">linkedin.com/in/reese‑thompson</a>
+                    target="_blank" rel="noreferrer noopener">https://www.linkedin.com/in/reese-thompson-933368232/</a>
             </p>
         </section>
 
         <footer>
-            © <span id="year"></span> Reese Thompson • Built with semantic HTML & vanilla CSS.
-            <span style="opacity:.7">(Tip: press the moon to toggle dark/light.)</span>
+            © <span id="year"></span> Reese Thompson
+            <span style="opacity:.7">(tip: press 🌙)</span>
         </footer>
     </main>
 
