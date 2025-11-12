@@ -552,8 +552,6 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <!-- Desktop Theme Button -->
-                <button class="btn secondary desktop-theme-btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
                 <!-- Mobile Menu Button -->
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu"
                     aria-expanded="false">
@@ -572,10 +570,6 @@
             <a href="#projects" class="mobile-menu-link">🚀 Projects</a>
             <a href="#skills" class="mobile-menu-link">🔨 Skills</a>
             <a href="#contact" class="mobile-menu-link">📬 Contact</a>
-            <div class="mobile-menu-divider"></div>
-            <button class="mobile-theme-btn" id="mobileThemeBtn" aria-label="Toggle theme">
-                <span>🌗</span> Toggle Theme
-            </button>
         </div>
     </header>
 
@@ -827,16 +821,13 @@
         </section>
 
         <footer>
-            © <span id="year"></span> Reese Thompson
-            <span style="opacity:.7">(tip: press 🌙)</span>
+            © <span id="year"></span> Reese Thompson (hint: long‑press RT logo)
         </footer>
     </main>
 
     <script>
         // Theme toggle with localStorage
         const body = document.body;
-        const desktopThemeBtn = document.getElementById('themeBtn');
-        const mobileThemeBtn = document.getElementById('mobileThemeBtn');
         const saved = localStorage.getItem('theme');
         if (saved) body.className = saved;
 
@@ -846,16 +837,53 @@
             localStorage.setItem('theme', mode);
         }
 
-        desktopThemeBtn.addEventListener('click', toggleTheme);
-        mobileThemeBtn.addEventListener('click', () => {
-            toggleTheme();
-            // Close mobile menu after theme toggle
-            const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            mobileMenu.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        });
+        function setTheme(mode) {
+            body.classList.toggle('light', mode === 'light');
+            localStorage.setItem('theme', mode);
+        }
+
+        // Secret: type "light" or "dark" to set theme
+        (function () {
+            let buf = '';
+            let timeoutId;
+            window.addEventListener('keydown', (e) => {
+                if (e.metaKey || e.ctrlKey || e.altKey) return;
+                const ch = e.key && e.key.length === 1 ? e.key.toLowerCase() : '';
+                if (!ch) return;
+
+                buf += ch;
+                if (buf.length > 10) buf = buf.slice(-10); // keep buffer small
+
+                if (buf.endsWith('light')) { setTheme('light'); buf = ''; }
+                else if (buf.endsWith('dark')) { setTheme('dark'); buf = ''; }
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => (buf = ''), 1500);
+            });
+        })();
+
+        // Secret: long‑press the RT badge (~700ms) to toggle theme (mobile‑friendly)
+        (function () {
+            const badge = document.querySelector('.brand .badge');
+            if (!badge) return;
+            let timer;
+            const start = () => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    toggleTheme();
+                }, 700);
+            };
+            const cancel = () => {
+                clearTimeout(timer);
+            };
+            // Touch for iOS and mouse for desktop fallback
+            badge.addEventListener('touchstart', start, { passive: true });
+            badge.addEventListener('touchend', cancel);
+            badge.addEventListener('touchcancel', cancel);
+            badge.addEventListener('mousedown', start);
+            badge.addEventListener('mouseup', cancel);
+            badge.addEventListener('mouseleave', cancel);
+        })();
 
         // Mobile dropdown toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
