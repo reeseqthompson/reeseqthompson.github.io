@@ -143,7 +143,8 @@
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            letter-spacing: .3px
+            letter-spacing: .3px;
+            perspective: 600px;
         }
 
         .brand .badge {
@@ -155,7 +156,36 @@
             border-radius: 12px;
             background: var(--brand);
             color: white;
-            box-shadow: var(--shadow)
+            box-shadow: var(--shadow);
+            transition: transform 0.09s ease, box-shadow 0.09s ease, filter 0.09s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* 3D pressed state for RT badge (no hover, only on press) */
+        .brand .badge.is-pressing {
+            transform: translateZ(-6px) translateY(1px);
+            box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.32);
+            filter: brightness(0.96);
+        }
+
+        /* Edge darkening when pressed */
+        .brand .badge::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 12px 18px rgba(0, 0, 0, .28),
+                inset 0 -4px 8px rgba(255, 255, 255, .04);
+            opacity: 0;
+            transition: opacity 0.09s ease;
+            pointer-events: none;
+        }
+
+        .brand .badge.is-pressing::before {
+            opacity: 0;
         }
 
         /* Prevent highlight/selection on brand area (badge + name) */
@@ -880,14 +910,17 @@
             let timer;
             const start = () => {
                 clearTimeout(timer);
+                badge.classList.add('is-pressing');
                 timer = setTimeout(() => {
                     toggleTheme();
+                    badge.classList.remove('is-pressing');
                 }, 700);
             };
             const cancel = () => {
                 clearTimeout(timer);
+                badge.classList.remove('is-pressing');
             };
-            // Touch for iOS and mouse for desktop fallback
+            // Touch for iOS and mouse for desktop (no hover effects)
             badge.addEventListener('touchstart', start, { passive: true });
             badge.addEventListener('touchend', cancel);
             badge.addEventListener('touchcancel', cancel);
